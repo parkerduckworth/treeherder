@@ -348,9 +348,10 @@ treeherder.factory('ThResultSetStore', [
             });
         };
 
-        var deleteRunnableJobs = function (repoName, resultSet) {
-            repositories[repoName].rsMap[resultSet.id].selected_runnable_jobs = [];
-            resultSet.isRunnableVisible = false;
+        var deleteRunnableJobs = function (repoName, pushId) {
+            const push = repositories[repoName].rsMap[pushId];
+            push.selected_runnable_jobs = [];
+            push.rs_obj.isRunnableVisible = false;
             $rootScope.$emit(thEvents.globalFilterChanged);
         };
 
@@ -806,21 +807,18 @@ treeherder.factory('ThResultSetStore', [
                     isInResultSetRange(repoName, data.results[i].push_timestamp) &&
                     repositories[repoName].rsMap[data.results[i].id] === undefined) {
 
-                    $log.debug("prepending resultset: ", data.results[i].id);
                     repositories[repoName].resultSets.push(data.results[i]);
                     added.push(data.results[i]);
-                } else {
-                    $log.debug("not prepending.  timestamp is older");
                 }
             }
 
             mapResultSets(repoName, added);
 
             repositories[repoName].loadingStatus.prepending = false;
+            $rootScope.$emit(thEvents.pushesLoaded);
         };
 
         var appendResultSets = function (repoName, data) {
-
             if (data.results.length > 0) {
 
                 $log.debug("appendResultSets", data.results);
@@ -850,6 +848,7 @@ treeherder.factory('ThResultSetStore', [
             }
 
             repositories[repoName].loadingStatus.appending = false;
+            $rootScope.$emit(thEvents.pushesLoaded);
         };
 
         /**
@@ -891,11 +890,14 @@ treeherder.factory('ThResultSetStore', [
             return repositories[repoName].rsMap[resultsetId].rs_obj;
         };
 
-        var getSelectedRunnableJobs = function (repoName, resultsetId) {
-            if (!repositories[repoName].rsMap[resultsetId].selected_runnable_jobs) {
-                repositories[repoName].rsMap[resultsetId].selected_runnable_jobs = [];
+        var getSelectedRunnableJobs = function (repoName, pushId) {
+            if (!repositories[repoName].rsMap[pushId]) {
+                return 0;
             }
-            return repositories[repoName].rsMap[resultsetId].selected_runnable_jobs;
+            if (!repositories[repoName].rsMap[pushId].selected_runnable_jobs) {
+                repositories[repoName].rsMap[pushId].selected_runnable_jobs = [];
+            }
+            return repositories[repoName].rsMap[pushId].selected_runnable_jobs;
         };
 
         var getGeckoDecisionJob = function (repoName, resultsetId) {
