@@ -112,9 +112,11 @@ export default class JobButtonComponent extends React.Component {
 }
 
 JobButtonComponent.propTypes = {
-  $injector: PropTypes.object.isRequired,
   job: PropTypes.object.isRequired,
-  visible: PropTypes.bool.isRequired,
-  hasGroup: PropTypes.bool.isRequired,
+  $injector: PropTypes.object.isRequired,
   repoName: PropTypes.string.isRequired,
+  visible: PropTypes.bool.isRequired,
+  status: PropTypes.string.isRequired,
+  failureClassificationId: PropTypes.number.isRequired,
+  hasGroup: PropTypes.bool.isRequired,
 };

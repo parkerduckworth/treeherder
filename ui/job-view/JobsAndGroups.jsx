@@ -32,8 +32,8 @@ export default class JobsAndGroups extends React.Component {
                 visible={job.visible}
                 status={getStatus(job)}
                 failureClassificationId={job.failure_classification_id}
-                key={job.id}
                 hasGroup={false}
+                key={job.id}
                 ref={i}
                 refOrder={i}
               />
@@ -47,6 +47,6 @@ export default class JobsAndGroups extends React.Component {
 
 JobsAndGroups.propTypes = {
   groups: PropTypes.array.isRequired,
-  $injector: PropTypes.object.isRequired,
   repoName: PropTypes.string.isRequired,
+  $injector: PropTypes.object.isRequired,
 };

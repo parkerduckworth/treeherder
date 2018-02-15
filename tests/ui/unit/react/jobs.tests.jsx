@@ -5,7 +5,6 @@ import Push from '../../../../ui/job-view/Push';
 import PushJobs from '../../../../ui/job-view/PushJobs';
 import Platform from '../../../../ui/job-view/Platform';
 import JobButton from '../../../../ui/job-view/JobButton';
-import { store } from '../../../../ui/job-view/redux/store';
 
 /*global describe, beforeEach, inject, jasmine, getJSONFixture, it, expect*/
 
@@ -70,7 +69,6 @@ describe('PushList component', () => {
     pushListEl = mount(
       <PushList
         $injector={$injector}
-        store={store}
         repoName={repoName}
         user={{}}
         currentRepo={{ name: "mozilla-inbound", url: "http://foo.baz" }}

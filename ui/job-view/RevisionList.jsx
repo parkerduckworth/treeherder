@@ -45,9 +45,7 @@ export const MoreRevisionsLink = props => (
       <a href={props.href}
          data-ignore-job-clear-on-click
          target="_blank"
-      >{`\u2026and more`}
-      <i className="fa fa-external-link-square" />
-      </a>
+      >{`\u2026and more`} <i className="fa fa-external-link-square" /></a>
     </li>
 );
 

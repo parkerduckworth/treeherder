@@ -238,6 +238,19 @@ export default class PushHeader extends React.PureComponent {
 }
 
 PushHeader.propTypes = {
-  loggedIn: PropTypes.bool.isRequired,
+  pushId: PropTypes.number.isRequired,
+  pushTimestamp: PropTypes.number.isRequired,
+  author: PropTypes.string.isRequired,
+  revision: PropTypes.string.isRequired,
+  jobCounts: PropTypes.object,
+  loggedIn: PropTypes.bool,
+  isStaff: PropTypes.bool,
+  repoName: PropTypes.string.isRequired,
+  isTryRepo: PropTypes.bool,
+  urlBasePath: PropTypes.string.isRequired,
+  $injector: PropTypes.object.isRequired,
+  runnableVisible: PropTypes.bool.isRequired,
+  showRunnableJobsCb: PropTypes.func.isRequired,
+  hideRunnableJobsCb: PropTypes.func.isRequired,
 };
 

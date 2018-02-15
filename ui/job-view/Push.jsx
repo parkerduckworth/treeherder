@@ -81,6 +81,9 @@ export default class Push extends React.Component {
 
 Push.propTypes = {
   push: PropTypes.object.isRequired,
-  $injector: PropTypes.object.isRequired,
+  isTryRepo: PropTypes.bool,
+  loggedIn: PropTypes.bool,
+  isStaff: PropTypes.bool,
   repoName: PropTypes.string,
+  $injector: PropTypes.object.isRequired,
 };
